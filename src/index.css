@@ -16,7 +16,7 @@ html {
   box-sizing: inherit;
 }
 * {
-  font-family: 'Inter', system-ui;
+  font-family: "Inter", system-ui;
 }
 a {
   text-decoration: none;
@@ -37,7 +37,123 @@ li {
   max-width: 1080px;
   margin: 50px auto;
 }
-
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+.drawer {
+  position: absolute;
+  width: 420px;
+  height: 100%;
+  right: 0;
+  background: #ffffff;
+  box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+.items {
+  overflow: auto;
+  margin-bottom: 40px;
+}
+h2 {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  margin-bottom: 30px;
+}
+.cartItem {
+  display: flex;
+  align-items: center;
+  border: 1px solid #f3f3f3;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.cartItemImg {
+  height: 70px;
+  width: 70px;
+  background-size: contain;
+  background-position: 0 10px;
+  background-repeat: no-repeat;
+  margin-right: 20px;
+}
+.cartItem img {
+  margin-right: 20px;
+}
+.cartItem p {
+  margin-bottom: 5px;
+}
+.cartPrice {
+  margin-right: 20px;
+}
+.cartPrice p {
+  font-size: 16px;
+  margin: 0;
+  margin-bottom: 5px;
+}
+.cartPrice b {
+  font-size: 14px;
+}
+.cartTotalBlock ul {
+  display: block;
+  margin-bottom: 40px !important;
+}
+.cartTotalBlock li {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+.cartTotalBlock div {
+  flex: 1;
+  height: 1px;
+  border-bottom: 1px dashed #dfdfdf;
+  position: relative;
+  top: -4px;
+  margin: 0 7px;
+}
+.cartTotalBlock .greenButton {
+  position: relative;
+}
+.cartTotalBlock .greenButton img {
+  position: absolute;
+  right: 30px;
+  top: 20px;
+  transition: transform 0.2s ease-in-out;
+}
+.cartTotalBlock .greenButton img:hover {
+  transform: translateX(10px);
+}
+.greenButton {
+  width: 100%;
+  height: 55px;
+  background: #9dd558;
+  border-radius: 18px;
+  border: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.5s ease-in-out;
+}
+.greenButton:hover {
+  background: lighten(#9dd558, 5%);
+}
+.greenButton:active {
+  background: darken(#9dd558, 5%);
+}
+.removeBtn {
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity 0.15 ease-in-out;
+}
+.removeBtn:hover {
+  opacity: 1;
+}
 header {
   display: flex;
   justify-content: space-between;
