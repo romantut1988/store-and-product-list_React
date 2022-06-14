@@ -15,6 +15,9 @@ html {
 *::before {
   box-sizing: inherit;
 }
+* {
+  font-family: 'Inter', system-ui;
+}
 a {
   text-decoration: none;
   color: inherit;
@@ -70,9 +73,26 @@ span {
 .content {
   padding: 40px;
 }
+.contentInput {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
 .content h1 {
   margin: 0;
-  margin-bottom: 40px;
+}
+.search-block {
+  display: flex;
+  border: 1px solid #f3f3f3;
+  border-radius: 10px;
+  padding: 0 15px;
+}
+.inputSearch {
+  width: 200px;
+  border: 0;
+  padding: 13px;
+  font-size: 16px;
 }
 .sneakers {
   display: flex;
@@ -83,6 +103,15 @@ span {
   width: 220px;
   border-radius: 40px;
   margin-right: 30px;
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+.card:hover {
+  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.06);
+  transform: translateY(-5px);
+}
+.favorite {
+  position: absolute;
+  cursor: pointer;
 }
 .cardDescription {
   display: flex;
