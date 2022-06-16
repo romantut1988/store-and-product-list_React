@@ -28,7 +28,8 @@ function App() {
             <Card title={obj.title}
               price={obj.price}
               imageUrl={obj.imageUrl}
-              onClick={() => console.log(obj)}
+              onFavotite={() => console.log('Добавили в закладки')}
+              onPlus={() => console.log('Нажали плюс')}
             />
           ))}
         </div>

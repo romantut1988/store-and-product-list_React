@@ -182,6 +182,9 @@ header {
 .headerRight {
   display: flex;
 }
+.headerRight li {
+  cursor: pointer;
+}
 .li:first-child li {
   margin-right: 30px;
 }
