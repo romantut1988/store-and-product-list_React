@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card } from './components/Card/Card';
 import { Header } from './components/Header';
 import { Drawer } from './components/Drawer';
@@ -11,10 +11,12 @@ const arr = [
 ]
 
 function App() {
+const [cartOpened, setCartOpened] = useState(false);
+
   return (
     <div className="wrapper">
-      <Drawer />
-      <Header />
+      {cartOpened && <Drawer onClose={ () => {setCartOpened(false)}} />}
+      <Header onClickCatr={ () => setCartOpened(true)} />
       <div className="content">
         <div className="contentInput">
           <h1>Все крассовки</h1>

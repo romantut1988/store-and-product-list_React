@@ -1,10 +1,18 @@
-export function Drawer() {
+export function Drawer(props) {
     return (
-        <div style={{ display: 'none' }} className="overlay">
+        <div className="overlay">
             <div className="drawer">
-                <h2>Корзина <img className="removeBtn" src="/img/btn-remove.svg" alt="Remover" /></h2>
+                <h2>Корзина <img onClick={props.onClose} className="removeBtn" src="/img/btn-remove.svg" alt="Close" /></h2>
                 <div className="items">
 
+                    <div className="cartItem">
+                        <div style={{ backgroundImage: 'url(/img/sneakers/1.jpg)' }} className="cartItemImg"></div>
+                        <div className="cartPrice">
+                            <p>Мужские Кроссовки Nike Air Max 270</p>
+                            <b>12 999 руб.</b>
+                        </div>
+                        <img className="removeBtn" src="/img/btn-remove.svg" alt="Remover" />
+                    </div>
                     <div className="cartItem">
                         <div style={{ backgroundImage: 'url(/img/sneakers/1.jpg)' }} className="cartItemImg"></div>
                         <div className="cartPrice">
