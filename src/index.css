@@ -64,6 +64,7 @@ li {
   text-align: center;
   flex-direction: column;
   flex: wrap;
+  padding-top: 100px;
 }
 .cartEmptyImg {
   width: 120px;
@@ -77,6 +78,7 @@ li {
 .cartEmpty p {
   width: 280px;
   line-height: 24px;
+  margin-bottom: 30px;
   opacity: 0.6;
 }
 .cartEmpty h2 {
