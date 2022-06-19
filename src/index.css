@@ -57,6 +57,44 @@ li {
   box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
   padding: 30px;
 }
+.cartEmpty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex: wrap;
+}
+.cartEmptyImg {
+  width: 120px;
+  height: 120px;
+}
+.cartEmptyImg:hover {
+  transform: rotate(180deg) translateX(3px);
+}
+.cartEmpty p {
+  width: 280px;
+  line-height: 24px;
+  opacity: 0.6;
+}
+.greenButtonTop {
+  position: relative;
+  top: 1px;
+  transform: rotate(180dge);
+  margin-right: 15px;
+  transition: translate 0.15s ease-in-out;
+  width: 245px;
+  margin-top: 20px;
+  height: 55px;
+  background: #9dd558;
+  margin-bottom: 20px;
+  border-radius: 18px;
+  border: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.5s ease-in-out;
+}
 .items {
   flex: 1;
   overflow: auto;
@@ -149,8 +187,11 @@ h2 {
 .greenButton:active {
   background: darken(#9dd558, 5%);
 }
+.closeBtn {
+  cursor: pointer;
+}
 .removeBtn {
-  position: absolute;
+  position: relative;
   right: 0;
   opacity: 0.5;
   cursor: pointer;
