@@ -1,15 +1,32 @@
 import Card from "../Card/Card";
-import React from 'react';
+import React from "react";
 
 function Home({
-    items,
-    cartItems,
-    searchValue,
-    setSearchValue,
-    onChangeSearchInput,
-    onAddToFavorite,
-    onAddToCart,
-  }) {
+  items,
+  cartItems,
+  searchValue,
+  setSearchValue,
+  onChangeSearchInput,
+  onAddToFavorite,
+  onAddToCart,
+  isLoading,
+}) {
+  const renderItems = () => {
+    const filterdItems = items.filter((item) =>
+      item.title.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    return (isLoading ? [...Array(12)] : filterdItems).map((item, index) => (
+      <Card
+        key={index}
+        onFavorite={(obj) => onAddToFavorite(obj)}
+        onPlus={(obj) => onAddToCart(obj)}
+        added={cartItems.find((obj) => Number(obj.id) === Number(item.id))}
+        loading={isLoading}
+        {...item}
+      />
+    ));
+  };
+
   return (
     <div className="content">
       <div className="contentInput">
@@ -35,19 +52,7 @@ function Home({
         </div>
       </div>
 
-      <div className="sneakers">
-        {items
-          .filter((item) =>item.title.toLowerCase().includes(searchValue.toLowerCase()))
-          .map((item, index) => (
-            <Card
-              key={index}
-              onFavorite={(obj) => onAddToFavorite(obj)}
-              onPlus={(obj) => onAddToCart(obj)}
-              added={cartItems.find((obj) => Number(obj.id) === Number(item.id))}
-              {...item}
-            />
-          ))}
-      </div>
+      <div className="sneakers">{renderItems()}</div>
     </div>
   );
 }
