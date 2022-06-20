@@ -3,12 +3,11 @@ export function Drawer({ onClose, onRemove, items = [] }) {
         <div className="overlay">
             <div className="drawer">
                 <h2>Корзина<img onClick={onClose} className="closeBtn" src="/img/btn-remove.svg" alt="Close" /></h2>
-                {
-                    items.length > 0 ?
+                {items.length > 0 ?
                         <>
                             <div className="items">
                                 {items.map((obj) => (
-                                    <div className="cartItem">
+                                    <div key={obj.id} className="cartItem">
                                         <div style={{ backgroundImage: `url(${obj.imageUrl})` }}
                                             className="cartItemImg">
                                         </div>
