@@ -238,10 +238,9 @@ header {
 }
 .headerRight li {
   cursor: pointer;
+  margin-left: 30px;
 }
-.li:first-child li {
-  margin-right: 30px;
-}
+
 span {
   margin-left: 10px;
   margin-right: 30px;

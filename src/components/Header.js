@@ -10,8 +10,11 @@ export function Header(props) {
             </div>
             <ul className="headerRight">
                 <li onClick={props.onClickCatr}>
-                    <img width={18} height={18} src="/img/cart.svg" alt="Cart"/>
+                    <img width={18} height={18} src="/img/cart.svg" alt="Basket"/>
                     <span>1205 руб.</span></li>
+                <li>
+                    <img width={18} height={18} src="/img/heart.svg" alt="Bookmarks"/>
+                </li>
                 <li>
                     <img width={18} height={18} src="/img/user.svg" alt="User"/>
                 </li>
