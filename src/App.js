@@ -3,8 +3,8 @@ import { Route } from 'react-router-dom';
 import axios from 'axios';
 import { Header } from './components/Header';
 import { Drawer } from './components/Drawer';
-import Home from './components/pages/Home';
-import Favorites from './components/pages/Favorites';
+import Home from './pages/Home';
+import Favorites from './pages/Favorites';
 import AppContext from './context';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
   const [favorites, setFavorites] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [cartOpened, setCartOpened] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
