@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/store-and-product-list_React/static/css/main.cf789a92.css",
+    "main.js": "/store-and-product-list_React/static/js/main.a517bf92.js",
+    "index.html": "/store-and-product-list_React/index.html",
+    "main.cf789a92.css.map": "/store-and-product-list_React/static/css/main.cf789a92.css.map",
+    "main.a517bf92.js.map": "/store-and-product-list_React/static/js/main.a517bf92.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cf789a92.css",
+    "static/js/main.a517bf92.js"
+  ]
+}
