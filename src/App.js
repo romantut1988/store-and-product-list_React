@@ -2,10 +2,11 @@ import React, { createContext, useEffect, useState } from 'react';
 import { Route } from 'react-router-dom';
 import axios from 'axios';
 import { Header } from './components/Header';
-import { Drawer } from './components/Drawer';
+import { Drawer } from './components/Drawer/Drawer';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 import AppContext from './context';
+import Orders from './pages/Orders';
 
 function App() {
   const [items, setItems] = useState([]);
@@ -13,7 +14,7 @@ function App() {
   const [favorites, setFavorites] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [cartOpened, setCartOpened] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -22,7 +23,6 @@ function App() {
       const itemsResponse = await axios.get('https://62ac2393bd0e5d29af1b6637.mockapi.io/items');
 
       setIsLoading(false);
-
       setCartItems(cartResponse.data);
       setFavorites(favoritesResponse.data);
       setItems(itemsResponse.data);
@@ -48,7 +48,7 @@ function App() {
 
   const onAddToFavorite = async (obj) => {
     try {
-      if (favorites.find( (favObj) => Number(favObj.id) === Number(obj.id))) {
+      if (favorites.find((favObj) => Number(favObj.id) === Number(obj.id))) {
         axios.delete(`/favorites/${obj.id}`);
         setFavorites((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
       } else {
@@ -69,11 +69,12 @@ function App() {
   };
 
   return (
-    <AppContext.Provider value={{ items, cartItems, favorites, isItemAdded, onAddToFavorite, setCartOpened, setCartItems }}>
+    <AppContext.Provider value={{ items, cartItems, favorites, isItemAdded, onAddToFavorite, onAddToCart, setCartOpened, setCartItems }}>
       <div className="wrapper">
-        {cartOpened && (
-          <Drawer items={cartItems} onClose={() => { setCartOpened(false) }} onRemove={onRemoveItem} />
-        )}
+        <div>
+          <Drawer items={cartItems} onClose={() => { setCartOpened(false) }} onRemove={onRemoveItem} opened={cartOpened} />
+        </div>
+
 
         <Header onClickCatr={() => setCartOpened(true)} />
 
@@ -93,6 +94,11 @@ function App() {
         <Route path="/favorites" exact>
           <Favorites />
         </Route>
+
+        <Route path="/orders" exact>
+          <Orders />
+        </Route>
+
       </div>
     </AppContext.Provider>
   );

@@ -1,22 +1,21 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import AppContext from "../context";
+import { useCart } from "../hooks/useCart";
 
 export function Header(props) {
-    const { cartItems } = useContext(AppContext);
-    const totalPrice = cartItems.reduce((sum, obj) => obj.price + sum, 0);
+    const { totalPrice } = useCart();
 
     return (
         <header>
             <Link to="/">
-            <div className="headerLeft">
-                <img width={40} height={40} src="/img/logo.png" alt="Logotype" />
-                <div className="headerInfo">
-                    <h3>React sneakers</h3>
-                    <p>Магазин лучших крассовок</p>
+                <div className="headerLeft">
+                    <img width={40} height={40} src="/img/logo.png" alt="Logotype" />
+                    <div className="headerInfo">
+                        <h3>React sneakers</h3>
+                        <p>Магазин лучших крассовок</p>
+                    </div>
                 </div>
-            </div>
-            </Link> 
+            </Link>
             <ul className="headerRight">
                 <li onClick={props.onClickCatr}>
                     <img width={18} height={18} src="/img/cart.svg" alt="Basket" />
@@ -27,7 +26,9 @@ export function Header(props) {
                     </Link>
                 </li>
                 <li>
-                    <img width={18} height={18} src="/img/user.svg" alt="User" />
+                    <Link to="/orders">
+                        <img width={18} height={18} src="/img/user.svg" alt="Bookmarks" />
+                    </Link>
                 </li>
             </ul>
         </header>

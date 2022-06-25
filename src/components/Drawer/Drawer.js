@@ -1,17 +1,19 @@
 import React, { useContext } from "react";
-import { useState } from "react";
-import Info from "./info";
-import AppContext from "../context";
 import axios from "axios";
+
+import { useState } from "react";
+import Info from "../Info";
+import { useCart } from "../../hooks/useCart";
+
+import styles from "./Drawer.module.scss";
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export function Drawer({ onClose, onRemove, items = [] }) {
-    const { cartItems, setCartItems } = useContext(AppContext);
+export function Drawer({ onClose, onRemove, items = [], opened }) {
+    const { cartItems, setCartItems, totalPrice } = useCart();
     const [orderId, setOrderId] = useState(null);
     const [isOrderComplete, setIsOrderComplete] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const totalPrice = cartItems.reduce((sum, obj) => obj.price + sum, 0);
 
     const onClickOrder = async () => {
         try {
@@ -37,8 +39,8 @@ export function Drawer({ onClose, onRemove, items = [] }) {
     };
 
     return (
-        <div className="overlay">
-            <div className="drawer">
+        <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
+            <div className={styles.drawer}>
                 <h2>Корзина<img onClick={onClose} className="closeBtn" src="/img/btn-remove.svg" alt="Close" /></h2>
                 {items.length > 0 ?
                     <>
