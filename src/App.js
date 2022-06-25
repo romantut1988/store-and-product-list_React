@@ -7,7 +7,6 @@ import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 import AppContext from './context';
 import Orders from './pages/Orders';
-import { getAllByAltText } from '@testing-library/react';
 
 function App() {
   const [items, setItems] = useState([]);
@@ -32,7 +31,7 @@ function App() {
         setItems(itemsResponse.data);
       } catch (error) {
         alert('Ошибка при запросе данных ;(');
-        console.error(error);                                                                                                         
+        console.error(error);
       }
     }
 
@@ -41,12 +40,22 @@ function App() {
 
   const onAddToCart = async (obj) => {
     try {
-      if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
-        setCartItems(prev => prev.filter((item) => Number(item.id) !== Number(obj.id)));
-        await axios.delete(`https://62ac2393bd0e5d29af1b6637.mockapi.io/cart/${obj.id}`);
+      const findItem = cartItems.find((item) => Number(item.parentId) === Number(obj.id))
+      if (findItem) {
+        setCartItems(prev => prev.filter((item) => Number(item.parentId) !== Number(obj.id)));
+        await axios.delete(`https://62ac2393bd0e5d29af1b6637.mockapi.io/cart/${findItem.id}`);
       } else {
-        setCartItems((prev) => [...prev, obj]);
-        await axios.post('https://62ac2393bd0e5d29af1b6637.mockapi.io/cart', obj);
+        setCartItems((prev) => [...prev, obj])
+        const {data} = await axios.post('https://62ac2393bd0e5d29af1b6637.mockapi.io/cart', obj);
+        setCartItems((prev) => prev.map(item => {
+          if (item.parentId === data.parentId) {
+            return {
+               ...item,
+               id: data.id 
+            };
+          }
+          return item;
+        }));
       }
     } catch (error) {
       alert('Ошибка при добавлении в корзину');
@@ -57,7 +66,7 @@ function App() {
   const onRemoveItem = (id) => {
     try {
       axios.delete(`https://62ac2393bd0e5d29af1b6637.mockapi.io/cart/${id}`);
-      setCartItems((prev) => prev.filter(item => item.id !== id));
+      setCartItems((prev) => prev.filter(item => Number(item.id) !== Number(id)));
     } catch (error) {
       alert('Ошибка при удалении из корзины');
       console.error(error);
@@ -84,7 +93,7 @@ function App() {
   }
 
   const isItemAdded = (id) => {
-    return cartItems.some((obj) => Number(obj.id) === Number(id));
+    return cartItems.some((obj) => Number(obj.parentId) === Number(id));
   };
 
   return (

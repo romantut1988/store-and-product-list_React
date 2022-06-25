@@ -11,9 +11,7 @@ function Orders() {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get(
-          "https://62ac2393bd0e5d29af1b6637.mockapi.io/orders"
-        );
+        const { data } = await axios.get('https://62ac2393bd0e5d29af1b6637.mockapi.io/orders');
         setOrders(data.reduce((prev, obj) => [...prev, ...obj.items], []));
         setIsLoading(false);
       } catch (error) {
